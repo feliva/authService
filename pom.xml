@@ -19,6 +19,13 @@
         <version.compiler.plugin>3.10.1</version.compiler.plugin>
         <war-plugin.version>3.3.2</war-plugin.version>
         <wildfly-plugin.version>4.1.0.Final</wildfly-plugin.version>
+
+
+        <flyway.version>10.6.0</flyway.version>
+        <postgres.driver.version>42.7.1</postgres.driver.version>
+        <database.url>jdbc:postgresql://localhost:5432/auth</database.url>
+        <database.user>postgres</database.user>
+        <database.password>postgres</database.password>
     </properties>
 
     <!--parent>
@@ -32,7 +39,7 @@
         <module>auth</module>
         <module>testAuth</module>
     </modules>
-
+<!-- mvn flyway:migrate -->
     <dependencyManagement>
         <dependencies>
             <dependency>
