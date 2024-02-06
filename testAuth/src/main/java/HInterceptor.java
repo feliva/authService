@@ -3,7 +3,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import br.com.feliva.sharedClass.producer.ProducerConnect;
+//import br.com.feliva.sharedClass.producer.ProducerConnect;
 import org.hibernate.Interceptor;
 import org.hibernate.Transaction;
 import org.hibernate.type.Type;
@@ -57,19 +57,19 @@ public class HInterceptor implements Interceptor {
 
     @Override
     public void beforeTransactionCompletion(Transaction tx) {
-        try {
-            //conteiner gerencia
-            Connection connection = ProducerConnect.getConnection();
-
-            Statement s = connection.createStatement();
-            s.execute(sql.toString());
-            s.close();
-            connection.close();
-
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }
-        this.sql = new StringBuilder();
+//        try {
+//            //conteiner gerencia
+//            Connection connection = ProducerConnect.getConnection();
+//
+//            Statement s = connection.createStatement();
+//            s.execute(sql.toString());
+//            s.close();
+//            connection.close();
+//
+//        } catch (SQLException e1) {
+//            e1.printStackTrace();
+//        }
+//        this.sql = new StringBuilder();
     }
 
     public String getUser() {
