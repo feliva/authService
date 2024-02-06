@@ -1,0 +1,54 @@
+<web-app version="6.0"
+         xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <!--distributable/-->
+
+
+    <servlet>
+        <servlet-name>facesServlet</servlet-name>
+        <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>facesServlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>calendario.xhtml</welcome-file>
+    </welcome-file-list>
+
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+
+
+    <security-role>
+        <role-name>MANAGER</role-name>
+    </security-role>
+
+    <login-config>
+        <auth-method>OIDC</auth-method>
+    </login-config>
+
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>chronoline</web-resource-name>
+            <url-pattern>/chronoline.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>MANAGER</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>picklist</web-resource-name>
+            <url-pattern>picklist.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>MANAGER</role-name>
+        </auth-constraint>
+    </security-constraint>
+</web-app>

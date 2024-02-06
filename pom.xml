@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>br.com.feliva</groupId>
+    <artifactId>authService</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <jakartaee-api.version>10.0.0</jakartaee-api.version>
+        <version.server.bom>30.0.1.Final</version.server.bom>
+        <version.microprofile.bom>30.0.1.Final</version.microprofile.bom>
+        <version.compiler.plugin>3.10.1</version.compiler.plugin>
+        <war-plugin.version>3.3.2</war-plugin.version>
+        <wildfly-plugin.version>4.1.0.Final</wildfly-plugin.version>
+    </properties>
+
+    <!--parent>
+        <groupId>br.com.feliva</groupId>
+        <artifactId>auth-project</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent-->
+
+    <modules>
+        <module>authClass</module>
+        <module>auth</module>
+        <module>testAuth</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-ee-with-tools</artifactId>
+                <version>${version.server.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- importing the microprofile BOM adds MicroProfile specs -->
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-microprofile</artifactId>
+                <version>${version.microprofile.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>

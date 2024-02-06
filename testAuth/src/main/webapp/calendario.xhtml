@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+		xmlns:f="jakarta.faces.core"
+		xmlns:h="jakarta.faces.html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:defs="defs.feliva.com.br"
+>
+<h:head>
+    <title>Hello, World!</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:schedule id="schedule" value="#{scheduleJava8View.eventModel}" widgetVar="myschedule">
+            <p:ajax event="eventMove" listener="#{scheduleJava8View.onEventMove}" />
+            <p:ajax event="eventResize" listener="#{scheduleJava8View.onEventResize}" />
+        </p:schedule>
+
+    </h:form>
+    <script type="text/javascript">if(window.PrimeFaces){PrimeFaces.settings.projectStage='Development';}</script>
+</h:body>
+</html>
