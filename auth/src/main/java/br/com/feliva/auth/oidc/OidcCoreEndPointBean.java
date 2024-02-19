@@ -62,7 +62,7 @@ import jakarta.ws.rs.core.Cookie;
 import jakarta.ws.rs.core.NewCookie;
 import jakarta.ws.rs.core.Response;
 
-@Path("/auth/realms/{realm}")
+@Path("/realms/{realm}")
 @RequestScoped
 public class OidcCoreEndPointBean {
 

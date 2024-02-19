@@ -10,15 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20ec5dd1-6776-4839-acee-f727d883b9f7" name="Changes" comment="pequenas mudanças">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/br/com/feliva/auth/oidc/OidcKeysUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/br/com/feliva/auth/oidc/OidcKeysUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/br/com/feliva/auth/oidc/OidcTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/br/com/feliva/auth/oidc/OidcTokenUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authClass/src/main/java/br/com/feliva/authClass/models/OpenIdConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/authClass/src/main/java/br/com/feliva/authClass/models/OpenIdConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authClass/src/main/java/br/com/feliva/authClass/models/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/authClass/src/main/java/br/com/feliva/authClass/models/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testAuth/src/main/java/ChronolineView.java" beforeDir="false" afterPath="$PROJECT_DIR$/testAuth/src/main/java/ChronolineView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sharedClass/install/README" beforeDir="false" />
-    </list>
+    <list default="true" id="20ec5dd1-6776-4839-acee-f727d883b9f7" name="Changes" comment="add tenat chain in jwt access token" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -248,7 +240,7 @@
       <workItem from="1707306287886" duration="641000" />
       <workItem from="1707307385020" duration="7000" />
       <workItem from="1708305825261" duration="1639000" />
-      <workItem from="1708343168794" duration="6236000" />
+      <workItem from="1708343168794" duration="6341000" />
     </task>
     <task id="LOCAL-00001" summary="reorganização dos projetos e configuração em modulos do authService">
       <option name="closed" value="true" />
@@ -290,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708346154879</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add tenat chain in jwt access token">
+      <option name="closed" value="true" />
+      <created>1708350947760</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708350947760</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,6 +313,7 @@
     <MESSAGE value="arrumado comfiguração do datasource e persistence unit" />
     <MESSAGE value="configurado flayway para versionamento da base de dados" />
     <MESSAGE value="pequenas mudanças" />
-    <option name="LAST_COMMIT_MESSAGE" value="pequenas mudanças" />
+    <MESSAGE value="add tenat chain in jwt access token" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tenat chain in jwt access token" />
   </component>
 </project>
