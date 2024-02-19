@@ -18,7 +18,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name="usuarios")
+@Table(name="usuarios", schema = "auth")
 public class Usuario extends Model<UUID> implements Serializable {
 	private static final long serialVersionUID = 22021991L;
 
@@ -33,16 +33,18 @@ public class Usuario extends Model<UUID> implements Serializable {
 	@Column(name = "dt_nasc")
 	@NotNull(message = "Informe a data de nascimento.")
 	protected LocalDate dtnasc;
-	
+
 	@NotEmpty(message = "Informe o cpf")
 	protected String cpf;
-    
+
 	/**
 	 * nao ativar o cascade no authUser, se for necessario, inverta o dono da relação
 	 * */
 	@JoinColumn(name = "auth_user_id")
 	@OneToOne(fetch = FetchType.LAZY)
 	protected AuthUser authUser;
+
+	protected String tenantId;
 
 	@Transient
 	protected boolean novo;
@@ -57,7 +59,7 @@ public class Usuario extends Model<UUID> implements Serializable {
 	public void setIdUsuario(UUID usuarioId) {
 		this.usuarioId = usuarioId;
 	}
-	
+
 	@Override
 	public UUID getMMId() {
 		return this.usuarioId;
@@ -71,7 +73,7 @@ public class Usuario extends Model<UUID> implements Serializable {
 		}
 		return iniciais.toString();
 	}
-    
+
     public void setUsuarioId(UUID usuarioId) {
 		this.usuarioId = usuarioId;
 	}
@@ -100,7 +102,7 @@ public class Usuario extends Model<UUID> implements Serializable {
 			this.cpf = cpf;
 		}
 	}
-	
+
 	public LocalDate getDtnasc() {
 		return dtnasc;
 	}
