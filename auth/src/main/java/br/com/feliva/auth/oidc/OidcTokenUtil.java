@@ -1,26 +1,6 @@
 package br.com.feliva.auth.oidc;
 
-import static br.com.feliva.authClass.models.OpenIdConstant.ACCESS_TOKEN;
-import static br.com.feliva.authClass.models.OpenIdConstant.AUTHORIZED_PARTY;
-import static br.com.feliva.authClass.models.OpenIdConstant.BEARER_TYPE;
-import static br.com.feliva.authClass.models.OpenIdConstant.CODE;
-import static br.com.feliva.authClass.models.OpenIdConstant.EMAIL;
-import static br.com.feliva.authClass.models.OpenIdConstant.EMAIL_VERIFIED;
-import static br.com.feliva.authClass.models.OpenIdConstant.EXPIRES_IN;
-import static br.com.feliva.authClass.models.OpenIdConstant.FAMILY_NAME;
-import static br.com.feliva.authClass.models.OpenIdConstant.GIVEN_NAME;
-import static br.com.feliva.authClass.models.OpenIdConstant.GROUPS;
-import static br.com.feliva.authClass.models.OpenIdConstant.IDENTITY_TOKEN;
-import static br.com.feliva.authClass.models.OpenIdConstant.LOCALE;
-import static br.com.feliva.authClass.models.OpenIdConstant.NAME;
-import static br.com.feliva.authClass.models.OpenIdConstant.NONCE;
-import static br.com.feliva.authClass.models.OpenIdConstant.OPENID_SCOPE;
-import static br.com.feliva.authClass.models.OpenIdConstant.PREFERRED_USERNAME;
-import static br.com.feliva.authClass.models.OpenIdConstant.SCOPE;
-import static br.com.feliva.authClass.models.OpenIdConstant.SESSION_STATE;
-import static br.com.feliva.authClass.models.OpenIdConstant.SID;
-import static br.com.feliva.authClass.models.OpenIdConstant.TOKEN_TYPE;
-import static br.com.feliva.authClass.models.OpenIdConstant.USER_PRINCIPAL_NAME;
+import static br.com.feliva.authClass.models.OpenIdConstant.*;
 import static br.com.feliva.sharedClass.constantes.InitConstantes.OIDC_ISSUR;
 import static java.util.UUID.randomUUID;
 
@@ -137,6 +117,7 @@ public class OidcTokenUtil {
         jstClaimsBuilder.claim(GIVEN_NAME, authLogin.getAuthUser().getUsuario().getNome());
         jstClaimsBuilder.claim(FAMILY_NAME, authLogin.getAuthUser().getUsuario().getNome());
         jstClaimsBuilder.claim(EMAIL, authLogin.getAuthUser().getEmail());
+        jstClaimsBuilder.claim(TENAT, authLogin.getAuthUser().getUsuario().getTenantId());
 
         JWSSigner signer = null;
         SignedJWT signedJWT = null;

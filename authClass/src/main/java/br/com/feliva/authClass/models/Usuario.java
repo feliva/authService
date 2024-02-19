@@ -130,7 +130,15 @@ public class Usuario extends Model<UUID> implements Serializable {
 		//cuidado com o loop dentro dos set
 	}
 
-	public static Usuario createNew(){
+	public String getTenantId() {
+		return tenantId;
+	}
+
+	public void setTenantId(String tenantId) {
+		this.tenantId = tenantId;
+	}
+
+	public static Usuario createNew() {
 		Usuario u = new Usuario();
 		u.novo = true;
 		u.setIdUsuario(UUID.randomUUID());

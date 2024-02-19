@@ -142,6 +142,7 @@ public class OpenIdConstant{
     // email scope claims
     public static final String EMAIL = "email";
     public static final String EMAIL_VERIFIED = "email_verified";
+    public static final String TENAT = "tenat";
 
     // address scope claims
     public static final String ADDRESS = "address";

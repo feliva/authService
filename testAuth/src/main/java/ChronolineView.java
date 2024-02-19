@@ -24,8 +24,6 @@ public class ChronolineView {
     @Inject
     private OidcSecurityContext securityContext;
 
-
-
     @PostConstruct
     public void init() {
         events = new ArrayList<>();
@@ -40,6 +38,7 @@ public class ChronolineView {
         events2.add("2022");
         events2.add("2023");
 
+        System.out.println(securityContext.getTokenString());
 
         System.out.println("-->" + securityContext.getToken().getName());
     }
