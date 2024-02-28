@@ -10,7 +10,7 @@ import jakarta.persistence.NoResultException;
 @RequestScoped
 public class PermissaoDAO extends DAO<Permissao>{
 
-    public List<Permissao> findAll(){
+    public List<Permissao> listAll(){
         try {
             return  this.em.createQuery("""
                     select p from Permissao p 

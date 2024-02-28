@@ -1,4 +1,4 @@
-package br.com.feliva.auth.api;
+package br.com.feliva.auth.endPoint;
 
 import static jakarta.ws.rs.core.MediaType.TEXT_HTML;
 

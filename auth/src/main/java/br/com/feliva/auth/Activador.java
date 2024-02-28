@@ -1,4 +1,4 @@
-package br.com.feliva.auth.api;
+package br.com.feliva.auth;
 
 import org.eclipse.microprofile.auth.LoginConfig;
 
