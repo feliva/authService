@@ -272,7 +272,7 @@ public class OidcCoreEndPointBean {
         }
 
         try {
-			this.authLoginDAO.updateT(authLogin);
+			this.authLoginDAO.mergeT(authLogin);
 		} catch (RollbackException e) {
 			e.printStackTrace();
 			return Response.ok(thymeleafUtil.processes("erroAuth"), TEXT_HTML).build();
