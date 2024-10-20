@@ -23,7 +23,7 @@ public class HInterceptor implements Interceptor {
     }
 
     @Override
-    public boolean onSave(Object entity, Serializable id, Object[] state, String[] propertyNames, Type[] types) {
+    public boolean onSave(Object entity, Object id, Object[] state, String[] propertyNames, Type[] types) {
 
         String sql = "INSERT INTO public.log (tupla_id, entidade, operacao, usuario_id, dt_log)" + "VALUES('" + id
                 + "', '" + entity.getClass().getName()
@@ -35,7 +35,7 @@ public class HInterceptor implements Interceptor {
     }
 
     @Override
-    public void onDelete(Object entity, Serializable id, Object[] state, String[] propertyNames, Type[] types) {
+    public void onDelete(Object entity, Object id, Object[] state, String[] propertyNames, Type[] types) {
         String sql = "INSERT INTO public.log (tupla_id, entidade, operacao, usuario_id, dt_log)" + "VALUES('" + id
                 + "', '" + entity.getClass().getName()
                 + "', 'onDelete(delite)', (select u.usuario_id from usuarios u where u.username ='" + this.getUser()
@@ -44,7 +44,7 @@ public class HInterceptor implements Interceptor {
     }
 
     @Override
-    public boolean onFlushDirty(Object entity, Serializable id, Object[] currentState, Object[] previousState,
+    public boolean onFlushDirty(Object entity, Object id, Object[] currentState, Object[] previousState,
                                 String[] propertyNames, Type[] types) {
         String sql = "INSERT INTO public.log (tupla_id, entidade, operacao, usuario_id, dt_log)" + "VALUES('" + id
                 + "', '" + entity.getClass().getName()
