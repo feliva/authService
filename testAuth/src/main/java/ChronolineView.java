@@ -43,6 +43,10 @@ public class ChronolineView {
         System.out.println("-->" + securityContext.getToken().getName());
     }
 
+    public String getUserLogado(){
+        return this.securityContext.getToken().getName() +" - "+this.securityContext.getToken().getPreferredUsername();
+    }
+
     public List<Event> getEvents() {
         return events;
     }

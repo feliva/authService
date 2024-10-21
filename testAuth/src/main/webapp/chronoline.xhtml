@@ -48,6 +48,9 @@
    <div class="card">
       <h:form>
          <h5>Customized</h5>
+         <span>
+            #{chronolineView.userLogado}
+         </span>
          <p:chronoline value="#{chronolineView.events}" var="event" align="alternate" styleClass="customized-chronoline">
 
             <p:card>

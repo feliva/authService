@@ -7,7 +7,7 @@
         
 	<persistence-unit name="authUnit" transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<jta-data-source>java:jboss/datasources/authDS</jta-data-source>
+		<jta-data-source>java:jboss/datasources/baseDS</jta-data-source>
 
 		<class>br.com.feliva.authClass.models.AuthUser</class>
 		<class>br.com.feliva.authClass.models.AuthLogin</class>

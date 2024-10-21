@@ -30,6 +30,7 @@ public class AuthUser extends  Model<UUID>{
     private UUID authUserId;
 
     @NotNull
+    @Column(length = 30)
     private String username;
 
     @NotNull

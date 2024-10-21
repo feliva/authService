@@ -111,7 +111,7 @@ public class OidcTokenUtil {
         jstClaimsBuilder.claim(SCOPE, OPENID_SCOPE);
         jstClaimsBuilder.claim(SID, authLogin.getState());
         jstClaimsBuilder.claim(EMAIL_VERIFIED, false);
-        jstClaimsBuilder.claim(NAME, authLogin.getAuthUser().getUsername());
+        jstClaimsBuilder.claim(NAME, authLogin.getAuthUser().getUsuario().getNome());
         jstClaimsBuilder.claim(PREFERRED_USERNAME, authLogin.getAuthUser().getUsername());
         jstClaimsBuilder.claim(LOCALE, "pt-BR");
         jstClaimsBuilder.claim(GIVEN_NAME, authLogin.getAuthUser().getUsuario().getNome());
