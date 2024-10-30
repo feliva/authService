@@ -13,7 +13,7 @@
 		<class>br.com.feliva.authClass.models.AuthLogin</class>
 		<class>br.com.feliva.authClass.models.Cliente</class>
 		<class>br.com.feliva.authClass.models.Permissao</class>
-		<class>br.com.feliva.authClass.models.Usuario</class>
+		<class>br.com.feliva.authClass.models.Pessoa</class>
 
 		
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>

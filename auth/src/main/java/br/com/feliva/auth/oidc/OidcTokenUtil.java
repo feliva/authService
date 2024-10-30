@@ -111,13 +111,13 @@ public class OidcTokenUtil {
         jstClaimsBuilder.claim(SCOPE, OPENID_SCOPE);
         jstClaimsBuilder.claim(SID, authLogin.getState());
         jstClaimsBuilder.claim(EMAIL_VERIFIED, false);
-        jstClaimsBuilder.claim(NAME, authLogin.getAuthUser().getUsuario().getNome());
+        jstClaimsBuilder.claim(NAME, authLogin.getAuthUser().getPessoa().getNome());
         jstClaimsBuilder.claim(PREFERRED_USERNAME, authLogin.getAuthUser().getUsername());
         jstClaimsBuilder.claim(LOCALE, "pt-BR");
-        jstClaimsBuilder.claim(GIVEN_NAME, authLogin.getAuthUser().getUsuario().getNome());
-        jstClaimsBuilder.claim(FAMILY_NAME, authLogin.getAuthUser().getUsuario().getNome());
+        jstClaimsBuilder.claim(GIVEN_NAME, authLogin.getAuthUser().getPessoa().getNome());
+        jstClaimsBuilder.claim(FAMILY_NAME, authLogin.getAuthUser().getPessoa().getNome());
         jstClaimsBuilder.claim(EMAIL, authLogin.getAuthUser().getEmail());
-        jstClaimsBuilder.claim(TENAT, authLogin.getAuthUser().getUsuario().getTenantId());
+        jstClaimsBuilder.claim(TENAT, authLogin.getAuthUser().getPessoa().getTenantId());
 
         JWSSigner signer = null;
         SignedJWT signedJWT = null;

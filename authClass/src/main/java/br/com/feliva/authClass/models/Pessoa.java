@@ -6,28 +6,22 @@ import java.util.HashSet;
 import java.util.UUID;
 
 import br.com.feliva.sharedClass.db.Model;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name="usuarios", schema = "auth")
-public class Usuario extends Model<UUID> implements Serializable {
+@Table(name="pessoas", schema = "auth")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Pessoa extends Model<UUID> implements Serializable {
 	private static final long serialVersionUID = 22021991L;
 
 	@Id
-	@Column(name="usuario_id")
-	protected UUID usuarioId;
+	@Column(name="pessoa_id")
+	protected UUID pessoaId;
 
 	@Column(name="nome")
-	@NotNull(message = "Informe o nome do usuario.")
+	@NotNull(message = "Informe o nome.")
 	protected String nome;
 
 	@Column(name = "dt_nasc")
@@ -49,20 +43,20 @@ public class Usuario extends Model<UUID> implements Serializable {
 	@Transient
 	protected boolean novo;
 
-	public Usuario() {
+	public Pessoa() {
 	}
 
 	public UUID getUsuarioId() {
-		return this.usuarioId;
+		return this.pessoaId;
 	}
 
 	public void setIdUsuario(UUID usuarioId) {
-		this.usuarioId = usuarioId;
+		this.pessoaId = usuarioId;
 	}
 
 	@Override
 	public UUID getMMId() {
-		return this.usuarioId;
+		return this.pessoaId;
 	}
 
 	public String labelIniciais() {
@@ -75,7 +69,7 @@ public class Usuario extends Model<UUID> implements Serializable {
 	}
 
     public void setUsuarioId(UUID usuarioId) {
-		this.usuarioId = usuarioId;
+		this.pessoaId = usuarioId;
 	}
 
 	public String getNome() {
@@ -138,8 +132,8 @@ public class Usuario extends Model<UUID> implements Serializable {
 		this.tenantId = tenantId;
 	}
 
-	public static Usuario createNew() {
-		Usuario u = new Usuario();
+	public static Pessoa createNew() {
+		Pessoa u = new Pessoa();
 		u.novo = true;
 		u.setIdUsuario(UUID.randomUUID());
 		u.setAuthUser(AuthUser.createNew(u, new HashSet<Permissao>()));

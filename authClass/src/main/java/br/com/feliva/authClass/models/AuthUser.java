@@ -54,7 +54,7 @@ public class AuthUser extends  Model<UUID>{
 
     @NotNull
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "authUser",optional = false)
-    private Usuario usuario;
+    private Pessoa pessoa;
 
     public UUID getMMId() {
         return this.authUserId;
@@ -114,13 +114,13 @@ public class AuthUser extends  Model<UUID>{
         this.setPermissao = listPermissao;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-        this.usuario.setAuthUser(this);
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+        this.pessoa.setAuthUser(this);
     }
 
     public boolean isInativo() {
@@ -139,12 +139,12 @@ public class AuthUser extends  Model<UUID>{
         this.email = email;
     }
 
-    public static AuthUser  createNew(Usuario usuario,Set<Permissao> permissoes){
+    public static AuthUser  createNew(Pessoa pessoa,Set<Permissao> permissoes){
         AuthUser au = new AuthUser();
-        au.setUsuario(usuario);
-        au.setUsername(usuario.getCpf());
+        au.setPessoa(pessoa);
+        au.setUsername(pessoa.getCpf());
         au.setSetPermissao(permissoes);
-        au.setPassword(usuario.getCpf());
+        au.setPassword(pessoa.getCpf());
         au.inativo = false;
         return au;
     }

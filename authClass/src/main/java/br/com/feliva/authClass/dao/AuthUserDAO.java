@@ -1,7 +1,8 @@
 package br.com.feliva.authClass.dao;
 
 import br.com.feliva.authClass.models.AuthUser;
-import br.com.feliva.authClass.models.Usuario;
+import br.com.feliva.authClass.models.Pessoa;
+import br.com.feliva.authClass.models.Pessoa;
 import br.com.feliva.sharedClass.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
@@ -13,7 +14,7 @@ public class AuthUserDAO extends DAO<AuthUser>{
         try {
             return (AuthUser) this.em.createQuery("""
                     select au from AuthUser au
-                    left join fetch au.usuario us 
+                    left join fetch au.pessoa us 
                     where au.username = :username
                 """).setParameter("username",username)
                     .getSingleResult();
@@ -22,11 +23,11 @@ public class AuthUserDAO extends DAO<AuthUser>{
         return null;
     }
 
-    public AuthUser findAuthUser(Usuario usuario){
+    public AuthUser findAuthUser(Pessoa usuario){
         try {
             return (AuthUser) this.em.createQuery("""
                 select a from AuthUser a
-                left join fetch a.usuario u
+                left join fetch a.pessoa u
                 left join fetch a.setPermissao p
                 where u = :usuario
             """).setParameter("usuario",usuario)
