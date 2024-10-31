@@ -9,6 +9,7 @@ import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="pessoas", schema = "auth")
@@ -111,6 +112,8 @@ public class Pessoa extends Model<UUID> implements Serializable {
 		return this.novo;
 	}
 
+	@Transient
+	@XmlTransient
 	public String getNomeCpf() {
 		return this.cpf + " - " + this.nome;
 	}
