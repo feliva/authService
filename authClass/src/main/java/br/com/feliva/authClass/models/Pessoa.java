@@ -13,12 +13,12 @@ import jakarta.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="pessoas", schema = "auth")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa extends Model<UUID> implements Serializable {
 	private static final long serialVersionUID = 22021991L;
 
 	@Id
 	@Column(name="pessoa_id")
+	@GeneratedValue(strategy = GenerationType.UUID)
 	protected UUID pessoaId;
 
 	@Column(name="nome")
@@ -36,7 +36,8 @@ public class Pessoa extends Model<UUID> implements Serializable {
 	 * nao ativar o cascade no authUser, se for necessario, inverta o dono da relação
 	 * */
 	@JoinColumn(name = "auth_user_id")
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
+	@NotNull(message = "Informe o authUser.")
 	protected AuthUser authUser;
 
 	protected String tenantId;
@@ -49,10 +50,6 @@ public class Pessoa extends Model<UUID> implements Serializable {
 
 	public UUID getUsuarioId() {
 		return this.pessoaId;
-	}
-
-	public void setIdUsuario(UUID usuarioId) {
-		this.pessoaId = usuarioId;
 	}
 
 	@Override
@@ -124,7 +121,6 @@ public class Pessoa extends Model<UUID> implements Serializable {
 
 	public void setAuthUser(AuthUser authUser) {
 		this.authUser = authUser;
-		//cuidado com o loop dentro dos set
 	}
 
 	public String getTenantId() {
@@ -135,11 +131,11 @@ public class Pessoa extends Model<UUID> implements Serializable {
 		this.tenantId = tenantId;
 	}
 
-	public static Pessoa createNew() {
-		Pessoa u = new Pessoa();
-		u.novo = true;
-		u.setIdUsuario(UUID.randomUUID());
-		u.setAuthUser(AuthUser.createNew(u, new HashSet<Permissao>()));
-		return u;
+	public static Pessoa createNew(){
+		AuthUser au = new AuthUser();
+		au.setInativo(false);
+		Pessoa p = new Pessoa();
+		p.setAuthUser(au);
+		return p;
 	}
 }

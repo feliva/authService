@@ -5,17 +5,7 @@ import java.util.UUID;
 
 import br.com.feliva.authClass.sec.Pbkdf2Hash;
 import br.com.feliva.sharedClass.db.Model;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -52,8 +42,7 @@ public class AuthUser extends  Model<UUID>{
     )
     private Set<Permissao> setPermissao;
 
-    @NotNull
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "authUser",optional = false)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "authUser")
     private Pessoa pessoa;
 
     public UUID getMMId() {
@@ -120,7 +109,6 @@ public class AuthUser extends  Model<UUID>{
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
-        this.pessoa.setAuthUser(this);
     }
 
     public boolean isInativo() {
@@ -139,12 +127,11 @@ public class AuthUser extends  Model<UUID>{
         this.email = email;
     }
 
-    public static AuthUser  createNew(Pessoa pessoa,Set<Permissao> permissoes){
+    public static AuthUser  createNew(){
         AuthUser au = new AuthUser();
-        au.setPessoa(pessoa);
-        au.setUsername(pessoa.getCpf());
-        au.setSetPermissao(permissoes);
-        au.setPassword(pessoa.getCpf());
+        Pessoa p = new Pessoa();
+        au.setPessoa(p);
+        p.setAuthUser(au);
         au.inativo = false;
         return au;
     }
