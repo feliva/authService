@@ -42,9 +42,6 @@ public class Pessoa extends Model<UUID> implements Serializable {
 
 	protected String tenantId;
 
-	@Transient
-	protected boolean novo;
-
 	public Pessoa() {
 	}
 
@@ -105,9 +102,6 @@ public class Pessoa extends Model<UUID> implements Serializable {
 
 	public void setEventLimit(boolean eventLimit) {
     }
-		public boolean isNovo() {
-		return this.novo;
-	}
 
 	@Transient
 	@XmlTransient
@@ -132,10 +126,8 @@ public class Pessoa extends Model<UUID> implements Serializable {
 	}
 
 	public static Pessoa createNew(){
-		AuthUser au = new AuthUser();
-		au.setInativo(false);
 		Pessoa p = new Pessoa();
-		p.setAuthUser(au);
+		p.setAuthUser(AuthUser.createNew(p));
 		return p;
 	}
 }

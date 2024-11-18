@@ -127,12 +127,11 @@ public class AuthUser extends  Model<UUID>{
         this.email = email;
     }
 
-    public static AuthUser  createNew(){
+    public static AuthUser  createNew(Pessoa pessoa){
         AuthUser au = new AuthUser();
-        Pessoa p = new Pessoa();
-        au.setPessoa(p);
-        p.setAuthUser(au);
+        au.setPessoa(pessoa);
         au.inativo = false;
+        pessoa.setAuthUser(au);
         return au;
     }
 }
