@@ -1,40 +1,4 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 17.0
--- Dumped by pg_dump version 17.0
-
--- Started on 2024-10-22 22:04:14
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET transaction_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- TOC entry 9 (class 2615 OID 17162)
--- Name: auth; Type: SCHEMA; Schema: -; Owner: -
---
-
 CREATE SCHEMA auth;
-
-
-SET default_tablespace = '';
-
-SET default_table_access_method = heap;
-
---
--- TOC entry 224 (class 1259 OID 17229)
--- Name: auth_login; Type: TABLE; Schema: auth; Owner: -
---
 
 CREATE TABLE auth.auth_login (
                                  auth_user_id uuid NOT NULL,
@@ -48,11 +12,6 @@ CREATE TABLE auth.auth_login (
 );
 
 
---
--- TOC entry 225 (class 1259 OID 17236)
--- Name: auth_user; Type: TABLE; Schema: auth; Owner: -
---
-
 CREATE TABLE auth.auth_user (
                                 username character varying(30) NOT NULL,
                                 password character varying(255) NOT NULL,
@@ -63,21 +22,12 @@ CREATE TABLE auth.auth_user (
 );
 
 
---
--- TOC entry 226 (class 1259 OID 17243)
--- Name: auth_user_permissao; Type: TABLE; Schema: auth; Owner: -
---
 
 CREATE TABLE auth.auth_user_permissao (
                                           auth_user_id uuid NOT NULL,
                                           permissao_id uuid NOT NULL
 );
 
-
---
--- TOC entry 227 (class 1259 OID 17246)
--- Name: cliente; Type: TABLE; Schema: auth; Owner: -
---
 
 CREATE TABLE auth.cliente (
                               nome character varying(255) NOT NULL,
@@ -88,25 +38,13 @@ CREATE TABLE auth.cliente (
                               cliente_id uuid DEFAULT gen_random_uuid() NOT NULL
 );
 
-
---
--- TOC entry 228 (class 1259 OID 17254)
--- Name: permissao; Type: TABLE; Schema: auth; Owner: -
---
-
 CREATE TABLE auth.permissao (
                                 nome character varying(255) NOT NULL,
                                 permissao_id uuid DEFAULT gen_random_uuid() NOT NULL
 );
 
-
---
--- TOC entry 271 (class 1259 OID 17843)
--- Name: pessoas; Type: TABLE; Schema: auth; Owner: -
---
-
 CREATE TABLE auth.pessoas (
-                              pessoa_id uuid NOT NULL,
+                              pessoa_id uuid DEFAULT gen_random_uuid() NOT NULL,
                               cpf character varying(255) NOT NULL,
                               dt_nasc date NOT NULL,
                               nome character varying(255) NOT NULL,
@@ -115,34 +53,10 @@ CREATE TABLE auth.pessoas (
 );
 
 
---
--- TOC entry 5030 (class 0 OID 17229)
--- Dependencies: 224
--- Data for Name: auth_login; Type: TABLE DATA; Schema: auth; Owner: -
---
-
-COPY auth.auth_login (auth_user_id, state, code, cliente_id, valido_ate, usado, auth_login_id, ativo) FROM stdin;
-bf874c2e-85a7-4e92-93c6-f0b9b4370d15	73a8fa33-07a1-4481-8aad-26a409f4b74a	5b7f9d20-8e97-4be8-9b78-ed3f201c0223	9009d6ad-bf60-4f1d-a429-a054cf775e8c	2024-10-21 09:58:03.374962	t	a48010ea-e6d5-4050-a020-a168686d13d1	t
-\.
-
-
---
--- TOC entry 5031 (class 0 OID 17236)
--- Dependencies: 225
--- Data for Name: auth_user; Type: TABLE DATA; Schema: auth; Owner: -
---
-
 COPY auth.auth_user (username, password, email, salt, auth_user_id, inativo) FROM stdin;
-12345678910	ZFpzgxDpcmnqieEX/IrsLKWgHHQzYRX7E2aekM5kHaywgOPYlr30hFwOgUsmN2HiqUBEedmrJEaqgc23C0xyfQ==	12345678910@12345678910.com	/jZc6DI/uiKk0sA+ytAE+Q==	bc939748-2889-4097-9f9c-457b00d08558	f
 02365495028	bfDNUkZZ8aBIgSuxHg1w2CYEjr3NuQxpYdgkscC6EXyn0u48P0YvAQIt7Trx371lcn0DEUl3zsYSB/6bm5ivew==	darlan.felisberto@iffarroupilha.edu.br	H57a/ti0h9f2ujVlrEcnbQ==	bf874c2e-85a7-4e92-93c6-f0b9b4370d15	f
+09603940613	R082x51R+gEIckn/GuOqY6htrUB8ONia5Th7Dk3IC7ghPAIXswiOC31+PWYgl+Q1tNdoJF+6uS/e4BJNFjNbqA==	a@b.c	H57a/ti0h9f2ujVlrEcnbQ==	99455dab-4a61-4cd7-ac2f-c2c9ff391188	f
 \.
-
-
---
--- TOC entry 5032 (class 0 OID 17243)
--- Dependencies: 226
--- Data for Name: auth_user_permissao; Type: TABLE DATA; Schema: auth; Owner: -
---
 
 COPY auth.auth_user_permissao (auth_user_id, permissao_id) FROM stdin;
 bf874c2e-85a7-4e92-93c6-f0b9b4370d15	1fc1d1f7-59f0-4bbb-a903-df39ec898891
@@ -151,12 +65,12 @@ bf874c2e-85a7-4e92-93c6-f0b9b4370d15	e945e9ee-53f6-418f-bc58-831a2dcb9574
 bf874c2e-85a7-4e92-93c6-f0b9b4370d15	ed6818c4-ee4a-4e31-96a2-b8bdea3efdd3
 bf874c2e-85a7-4e92-93c6-f0b9b4370d15	3e8f7ac5-4372-4691-80e1-c90a6bd91912
 bf874c2e-85a7-4e92-93c6-f0b9b4370d15	b43c01af-875b-4c3a-83ab-cb669e9f940e
-bc939748-2889-4097-9f9c-457b00d08558	463d740f-b0fe-48fe-a65a-4ca8673c7ca4
+bf874c2e-85a7-4e92-93c6-f0b9b4370d15	a722cc9c-87e4-4ec4-8459-c6b46e8f9d02
 \.
 
 
 --
--- TOC entry 5033 (class 0 OID 17246)
+-- TOC entry 5030 (class 0 OID 17246)
 -- Dependencies: 227
 -- Data for Name: cliente; Type: TABLE DATA; Schema: auth; Owner: -
 --
@@ -164,14 +78,12 @@ bc939748-2889-4097-9f9c-457b00d08558	463d740f-b0fe-48fe-a65a-4ca8673c7ca4
 COPY auth.cliente (nome, redirecionamento, cliente_url, secret, response_type, cliente_id) FROM stdin;
 angular	http://localhost:4200	http://localhost:4200	3fd70ff4-fe2b-47b6-a8a3-cd1cf281a937	TOKEN	1373b43d-76db-44ce-821c-f55d1e1dfa4f
 testAuth	http://localhost:8080/testAuth	http://localhost:8080/testAuth	3fd70ff4-fe2b-47b6-a8a3-cd1cf281a937	CODE	9009d6ad-bf60-4f1d-a429-a054cf775e8c
+sifw	http://localhost:8080/sifw	http://localhost:8080/sifw	3fd70ff4-fe2b-47b6-a8a3-cd1cf281a937	CODE	9009d6ad-bf60-4f1d-a429-a054cf775e8a
 \.
 
 
-INSERT INTO auth.cliente (nome, redirecionamento, cliente_url, secret, response_type, cliente_id)
-VALUES('sifw', 'http://localhost:8080/sifw', 'http://localhost:8080/sifw', '3fd70ff4-fe2b-47b6-a8a3-cd1cf281a937', 'CODE', '9009d6ad-bf60-4f1d-a429-a054cf775e8a'::uuid);
-
 --
--- TOC entry 5034 (class 0 OID 17254)
+-- TOC entry 5031 (class 0 OID 17254)
 -- Dependencies: 228
 -- Data for Name: permissao; Type: TABLE DATA; Schema: auth; Owner: -
 --
@@ -182,23 +94,28 @@ IFFAR_RU_ADMIN	ed6818c4-ee4a-4e31-96a2-b8bdea3efdd3
 IFFAR_RU_CREDITO	3e8f7ac5-4372-4691-80e1-c90a6bd91912
 IFFAR_RU_CATRACA	b43c01af-875b-4c3a-83ab-cb669e9f940e
 MANAGER	463d740f-b0fe-48fe-a65a-4ca8673c7ca4
-ADMIN	1fc1d1f7-59f0-4bbb-a903-df39ec898891
+IFFAR_RU	a722cc9c-87e4-4ec4-8459-c6b46e8f9d02
+IFFAR_ADMIN	1fc1d1f7-59f0-4bbb-a903-df39ec898891
+IFFAR_DOCENTE	4bb4c079-601b-474d-b5f4-5c19f6a3a7cf
+IFFAR_MORADIA_CHAMADA	29279804-57b9-47ec-b07d-a68e1ffa93e5
+IFFAR_USER_SEARCH	d3632b20-91d4-407c-a010-c1624754ffb5
 \.
 
 
 --
--- TOC entry 5035 (class 0 OID 17843)
--- Dependencies: 271
+-- TOC entry 5032 (class 0 OID 17843)
+-- Dependencies: 267
 -- Data for Name: pessoas; Type: TABLE DATA; Schema: auth; Owner: -
 --
 
 COPY auth.pessoas (pessoa_id, cpf, dt_nasc, nome, tenantid, auth_user_id) FROM stdin;
-cf874c2e-85a7-4e92-93c6-f0b9b4370d15	02365495028	1991-02-22	darlan	feliva	bf874c2e-85a7-4e92-93c6-f0b9b4370d15
+cf874c2e-85a7-4e92-93c6-f0b9b4370d15	02365495028	1991-02-22	Darlan	feliva	bf874c2e-85a7-4e92-93c6-f0b9b4370d15
+99455dab-4a61-4cd7-ac2f-c2c9ff391188	09603940613	1999-04-19	Ana	feliva	99455dab-4a61-4cd7-ac2f-c2c9ff391188
 \.
 
 
 --
--- TOC entry 4856 (class 2606 OID 17461)
+-- TOC entry 4853 (class 2606 OID 17461)
 -- Name: auth_login auth_login_pk; Type: CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -207,7 +124,7 @@ ALTER TABLE ONLY auth.auth_login
 
 
 --
--- TOC entry 4863 (class 2606 OID 17463)
+-- TOC entry 4860 (class 2606 OID 17463)
 -- Name: auth_user_permissao auth_user_permissao_un; Type: CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -216,7 +133,7 @@ ALTER TABLE ONLY auth.auth_user_permissao
 
 
 --
--- TOC entry 4859 (class 2606 OID 17465)
+-- TOC entry 4856 (class 2606 OID 17465)
 -- Name: auth_user auth_user_pk; Type: CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -225,7 +142,7 @@ ALTER TABLE ONLY auth.auth_user
 
 
 --
--- TOC entry 4865 (class 2606 OID 17467)
+-- TOC entry 4862 (class 2606 OID 17467)
 -- Name: cliente cliente_pk; Type: CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -234,7 +151,7 @@ ALTER TABLE ONLY auth.cliente
 
 
 --
--- TOC entry 4867 (class 2606 OID 17830)
+-- TOC entry 4864 (class 2606 OID 17830)
 -- Name: cliente clientes_un; Type: CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -243,7 +160,7 @@ ALTER TABLE ONLY auth.cliente
 
 
 --
--- TOC entry 4869 (class 2606 OID 17471)
+-- TOC entry 4866 (class 2606 OID 17471)
 -- Name: permissao permissao_pk; Type: CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -252,7 +169,7 @@ ALTER TABLE ONLY auth.permissao
 
 
 --
--- TOC entry 4871 (class 2606 OID 17841)
+-- TOC entry 4868 (class 2606 OID 17841)
 -- Name: permissao permissao_un; Type: CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -261,7 +178,7 @@ ALTER TABLE ONLY auth.permissao
 
 
 --
--- TOC entry 4873 (class 2606 OID 17849)
+-- TOC entry 4870 (class 2606 OID 17849)
 -- Name: pessoas pessoas_pkey; Type: CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -270,25 +187,25 @@ ALTER TABLE ONLY auth.pessoas
 
 
 --
--- TOC entry 4875 (class 2606 OID 17851)
--- Name: pessoas uk7tc4dvyrblo5u6wh5en7190kh; Type: CONSTRAINT; Schema: auth; Owner: -
+-- TOC entry 4872 (class 2606 OID 26072)
+-- Name: pessoas pessoas_unique_cpf; Type: CONSTRAINT; Schema: auth; Owner: -
 --
 
 ALTER TABLE ONLY auth.pessoas
-    ADD CONSTRAINT uk7tc4dvyrblo5u6wh5en7190kh UNIQUE (auth_user_id);
+    ADD CONSTRAINT pessoas_unique_cpf UNIQUE (cpf);
 
 
 --
--- TOC entry 4861 (class 2606 OID 17477)
--- Name: auth_user usuario_un; Type: CONSTRAINT; Schema: auth; Owner: -
+-- TOC entry 4858 (class 2606 OID 17477)
+-- Name: auth_user username_unque; Type: CONSTRAINT; Schema: auth; Owner: -
 --
 
 ALTER TABLE ONLY auth.auth_user
-    ADD CONSTRAINT usuario_un UNIQUE (username);
+    ADD CONSTRAINT username_unque UNIQUE (username);
 
 
 --
--- TOC entry 4857 (class 1259 OID 17564)
+-- TOC entry 4854 (class 1259 OID 17564)
 -- Name: auth_login_usado_code_idx; Type: INDEX; Schema: auth; Owner: -
 --
 
@@ -296,7 +213,7 @@ CREATE INDEX auth_login_usado_code_idx ON auth.auth_login USING btree (usado, co
 
 
 --
--- TOC entry 4876 (class 2606 OID 17565)
+-- TOC entry 4873 (class 2606 OID 17565)
 -- Name: auth_login auth_login_aut_user_fk; Type: FK CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -305,7 +222,7 @@ ALTER TABLE ONLY auth.auth_login
 
 
 --
--- TOC entry 4877 (class 2606 OID 17570)
+-- TOC entry 4874 (class 2606 OID 17570)
 -- Name: auth_login auth_login_fk; Type: FK CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -314,7 +231,7 @@ ALTER TABLE ONLY auth.auth_login
 
 
 --
--- TOC entry 4878 (class 2606 OID 17575)
+-- TOC entry 4875 (class 2606 OID 17575)
 -- Name: auth_user_permissao auth_user_permissao_1_fk; Type: FK CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -323,7 +240,7 @@ ALTER TABLE ONLY auth.auth_user_permissao
 
 
 --
--- TOC entry 4879 (class 2606 OID 17580)
+-- TOC entry 4876 (class 2606 OID 17580)
 -- Name: auth_user_permissao auth_user_permissao_fk; Type: FK CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -332,7 +249,7 @@ ALTER TABLE ONLY auth.auth_user_permissao
 
 
 --
--- TOC entry 4880 (class 2606 OID 17852)
+-- TOC entry 4877 (class 2606 OID 17852)
 -- Name: pessoas fke35rof3jss53tmnk11qwb0ahk; Type: FK CONSTRAINT; Schema: auth; Owner: -
 --
 
@@ -340,7 +257,7 @@ ALTER TABLE ONLY auth.pessoas
     ADD CONSTRAINT fke35rof3jss53tmnk11qwb0ahk FOREIGN KEY (auth_user_id) REFERENCES auth.auth_user(auth_user_id);
 
 
--- Completed on 2024-10-22 22:04:14
+-- Completed on 2024-11-23 17:41:56
 
 --
 -- PostgreSQL database dump complete
