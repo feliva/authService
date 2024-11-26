@@ -27,20 +27,20 @@ import jakarta.persistence.PersistenceUnit;
 //@Eager
 @RequestScoped
 public class ProducerConnect implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 //	@PersistenceUnit(name = "authUnit")
 //	private static EntityManagerFactory emBU;
 
-	@PersistenceContext(unitName = "baseUnit")
+	@PersistenceContext(unitName = "authUnit")
     @Produces
 	@Default
 	private static EntityManager em;
-	
-	@Resource(mappedName = "java:jboss/datasources/baseDS") // same JNDI used by Hibernate Persistence Unit
+
+	@Resource(mappedName = "java:jboss/datasources/authDS") // same JNDI used by Hibernate Persistence Unit
 	private static DataSource dss;
-	
+
 
 	public void close(@Disposes Connection com) {
 		try {
@@ -54,16 +54,16 @@ public class ProducerConnect implements Serializable {
 
 	@Produces
 	public static Connection getConnection() throws SQLException {
-		if(dss == null) {   
+		if(dss == null) {
 	        try {
 	            Context ctx = new InitialContext();
-	            dss = (DataSource) ctx.lookup("java:jboss/datasources/baseDS");
+	            dss = (DataSource) ctx.lookup("java:jboss/datasources/authDS");
 	        }catch (NamingException e) {
 	            e.printStackTrace();
 	        }
 	    }
-		
-		
+
+
 		return dss.getConnection();
 	}
 }

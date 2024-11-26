@@ -7,7 +7,7 @@
         
 	<persistence-unit name="authUnit" transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<jta-data-source>java:jboss/datasources/baseDS</jta-data-source>
+		<jta-data-source>java:jboss/datasources/authDS</jta-data-source>
 
 		<class>br.com.feliva.authClass.models.AuthUser</class>
 		<class>br.com.feliva.authClass.models.AuthLogin</class>
@@ -18,7 +18,6 @@
 		
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		<properties>
-			<property name="jakarta.persistence.schema-generation.database.action" value="update"/>
 			<!--property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/-->
 			<!--property name="hibernate.generate_statistics" value="true"/-->
 			<property name="hibernate.enable_lazy_load_no_trans" value="true" />

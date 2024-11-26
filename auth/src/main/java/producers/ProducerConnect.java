@@ -18,17 +18,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-//@Eager
 @RequestScoped
 public class ProducerConnect implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-//	@PersistenceUnit(name = "authUnit")
-//	private static EntityManagerFactory emBU;
-
 	@PersistenceContext(unitName = "authUnit")
-    @Produces
+	@Produces
 	@Default
 	private static EntityManager em;
 	
@@ -51,7 +47,7 @@ public class ProducerConnect implements Serializable {
 		if(dss == null) {   
 	        try {
 	            Context ctx = new InitialContext();
-	            dss = (DataSource) ctx.lookup("java:jboss/datasources/baseDS");
+	            dss = (DataSource) ctx.lookup("java:jboss/datasources/authDS");
 	        }catch (NamingException e) {
 	            e.printStackTrace();
 	        }
