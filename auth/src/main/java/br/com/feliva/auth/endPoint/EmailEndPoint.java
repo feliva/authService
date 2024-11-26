@@ -3,6 +3,7 @@ package br.com.feliva.auth.endPoint;
 import static jakarta.ws.rs.core.MediaType.TEXT_HTML;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import br.com.feliva.auth.util.ThymeleafUtil;
 import br.com.feliva.authClass.dao.AuthUserDAO;
@@ -17,6 +18,7 @@ import jakarta.mail.Session;
 import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.transaction.RollbackException;
 import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -50,16 +52,25 @@ public class EmailEndPoint implements Serializable{
 		if(user == null) {
 			return;
 		}
+        String novaSenha = UUID.randomUUID().toString();
 
-		try{
+        user.setPassword(novaSenha);
+        try {
+            this.authUserDAO.mergeT(user);
+        } catch (RollbackException e) {
+            throw new RuntimeException(e);
+        }
+
+        try{
             MimeMessage m = new MimeMessage(mailSession);
-            Address from = new InternetAddress("darlan.felisberto@iffarroupilha.edu.br");
+            //TODO pegar de parametro
+            Address from = new InternetAddress("naoresponda@mail.edu.br");
             Address[] to = new InternetAddress[] {new InternetAddress(user.getEmail()) };
             m.setFrom(from);
             m.setRecipients(Message.RecipientType.TO, to);
-            m.setSubject("WildFly Mail");
+            m.setSubject("Resuperação de senha");
             m.setSentDate(new java.util.Date());
-            m.setContent("Mail sent from WildFly","text/plain");
+            m.setContent("Sua nova senha é " + novaSenha,"text/plain");
             Transport.send(m);
             System.out.println("enviado");
         }

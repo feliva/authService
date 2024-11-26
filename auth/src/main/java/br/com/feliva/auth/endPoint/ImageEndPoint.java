@@ -2,6 +2,7 @@ package br.com.feliva.auth.endPoint;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -18,7 +19,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.CacheControl;
 import jakarta.ws.rs.core.Response;
 
-@Path("/img")
+@Path("/files")
 @RequestScoped
 public class ImageEndPoint implements Serializable{
 	
@@ -27,17 +28,34 @@ public class ImageEndPoint implements Serializable{
     private Session mailSession;
 		
 	@GET                                                             
-    @Path("/{img}.png")
+    @Path("/img/{img}.png")
 	@Produces({"image/png"})
     public Response  getImgb(@PathParam("img") String img) throws IOException {
 
-		if(!Files.exists(Paths.get(InitConstantes.IMAGEM_PATH + File.separator + img + InitConstantes.IMAGEM_EXTENSAO))) {
-			return null;
+		java.nio.file.Path path = Paths.get(InitConstantes.IMAGEM_PATH + File.separator + img + InitConstantes.IMAGEM_EXTENSAO);
+
+		if(!Files.exists(path)) {
+			return Response.status(Response.Status.NOT_FOUND).build();
 		}
 		CacheControl cacheControl = new CacheControl();
         cacheControl.setMaxAge((int) TimeUnit.DAYS.toSeconds(7));
-		return Response.ok(Files.newInputStream(Paths.get(InitConstantes.IMAGEM_PATH+ File.separator+ img+ InitConstantes.IMAGEM_EXTENSAO)),"image/png")
+		return Response.ok(Files.newInputStream(path),"image/png")
 				.cacheControl(cacheControl)
 				.build();		
+	}
+	@GET
+	@Path("/static/{img}.png")
+	@Produces({"image/png"})
+	public Response  getStatic(@PathParam("img") String img) throws IOException {
+		//so funciona em war file
+		InputStream imgStream = getClass().getClassLoader().getResourceAsStream("imagen/" + img+ ".png");
+		if(imgStream == null) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+		CacheControl cacheControl = new CacheControl();
+		cacheControl.setMaxAge((int) TimeUnit.DAYS.toSeconds(7));
+		return Response.ok(imgStream,"image/png")
+				.cacheControl(cacheControl)
+				.build();
 	}
 }
