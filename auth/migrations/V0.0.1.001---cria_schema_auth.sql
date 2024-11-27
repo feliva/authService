@@ -52,7 +52,7 @@ CREATE TABLE auth.pessoas (
                               auth_user_id uuid
 );
 
-
+--usuario e senha sao o cpf
 COPY auth.auth_user (username, password, email, salt, auth_user_id, inativo) FROM stdin;
 02365495028	bfDNUkZZ8aBIgSuxHg1w2CYEjr3NuQxpYdgkscC6EXyn0u48P0YvAQIt7Trx371lcn0DEUl3zsYSB/6bm5ivew==	darlan.felisberto@iffarroupilha.edu.br	H57a/ti0h9f2ujVlrEcnbQ==	bf874c2e-85a7-4e92-93c6-f0b9b4370d15	f
 09603940613	R082x51R+gEIckn/GuOqY6htrUB8ONia5Th7Dk3IC7ghPAIXswiOC31+PWYgl+Q1tNdoJF+6uS/e4BJNFjNbqA==	a@b.c	H57a/ti0h9f2ujVlrEcnbQ==	99455dab-4a61-4cd7-ac2f-c2c9ff391188	f
