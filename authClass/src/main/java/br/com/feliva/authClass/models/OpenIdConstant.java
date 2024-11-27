@@ -99,8 +99,8 @@ public class OpenIdConstant{
     public static final List<String> AUTHORIZATION_CODE_FLOW_TYPES
             = unmodifiableList(asList(
                     CODE,
-                    TOKEN,
-                    ID_TOKEN
+                    TOKEN
+//                    ,ID_TOKEN
             ));
     public static final List<String> IMPLICIT_FLOW_TYPES
             = unmodifiableList(asList(
@@ -161,9 +161,9 @@ public class OpenIdConstant{
     public static final String SECRET_POST = "client_secret_post";
 
     public static final List<String> SCOPES_SUPPORTED_LIST = asList(
-            OPENID_SCOPE,
-            EMAIL_SCOPE,
-            PROFILE_SCOPE
+            OPENID_SCOPE
+//            ,EMAIL_SCOPE,
+//            PROFILE_SCOPE
     );
     public static final List<String> TOKEN_ENDPOINT_AUTH_METHODS_SUPPORTED_LIST = asList(SECRET_POST,SECRET_BASIC);
     public static final List<String> CLAIMS_SUPPORTED_LIST = asList(

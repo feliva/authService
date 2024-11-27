@@ -58,14 +58,18 @@ public class OidcKeysUtil implements Serializable{
     static {    	
     	readKey();   
     }
-    
-    
+
+
+    /**
+     * https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
+     * TODO verificar se esta tudo ok com o wellKnow
+     */
     static String criaWellKnow(){
     	
 	    List<String> RESPONSE_TYPE_SUPPORTED_LIST = new ArrayList<String>();
 	    RESPONSE_TYPE_SUPPORTED_LIST.addAll(AUTHORIZATION_CODE_FLOW_TYPES);
-	    RESPONSE_TYPE_SUPPORTED_LIST.addAll(IMPLICIT_FLOW_TYPES);
-	    RESPONSE_TYPE_SUPPORTED_LIST.addAll(HYBRID_FLOW_TYPES);
+//	    RESPONSE_TYPE_SUPPORTED_LIST.addAll(IMPLICIT_FLOW_TYPES);
+//	    RESPONSE_TYPE_SUPPORTED_LIST.addAll(HYBRID_FLOW_TYPES);
 	    RESPONSE_TYPE_SUPPORTED_LIST.add("none");
 	
 	    JsonObjectBuilder jsonBuilder = Json.createObjectBuilder();
