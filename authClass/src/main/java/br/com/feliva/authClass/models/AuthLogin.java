@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "auth_login", schema = "auth")
-public class AuthLogin extends Model<UUID> {
+public class AuthLogin extends Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

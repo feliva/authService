@@ -1,19 +1,18 @@
 package br.com.feliva.authClass.models;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.UUID;
-
 import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.xml.bind.annotation.XmlTransient;
 
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.UUID;
+
 @Entity
 @Table(name="pessoas", schema = "auth")
-public class Pessoa extends Model<UUID> implements Serializable {
+public class Pessoa extends Model implements Serializable {
 	private static final long serialVersionUID = 22021991L;
 
 	@Id

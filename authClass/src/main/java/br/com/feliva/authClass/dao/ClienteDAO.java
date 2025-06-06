@@ -6,7 +6,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 
 @RequestScoped
-public class ClienteDAO extends DAO<Cliente>{
+public class ClienteDAO extends DAO<Cliente> {
 
     /**
 	 * 

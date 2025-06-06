@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "cliente", schema = "auth")
-public class Cliente extends Model<UUID> {
+public class Cliente extends Model {
 
 	private static final long serialVersionUID = 1L;
 

@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "permissao", schema = "auth")
-public class Permissao extends Model<UUID> {
+public class Permissao extends Model {
 
 	private static final long serialVersionUID = 1L;
 

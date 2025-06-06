@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "auth_user", schema = "auth")
-public class AuthUser extends  Model<UUID>{
+public class AuthUser extends Model {
 
 	private static final long serialVersionUID = 1L;
 

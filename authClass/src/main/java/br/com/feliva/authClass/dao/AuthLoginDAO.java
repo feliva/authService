@@ -8,7 +8,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 
 @RequestScoped
-public class AuthLoginDAO extends DAO<AuthLogin>{
+public class AuthLoginDAO extends DAO<AuthLogin> {
 
     /**
 	 * 
