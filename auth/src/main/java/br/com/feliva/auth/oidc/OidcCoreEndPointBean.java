@@ -129,18 +129,19 @@ public class OidcCoreEndPointBean {
         	return Response.ok(thymeleafUtil.processes("erroAuth"), TEXT_HTML).build();
         }
 
-        Response retorno = retornaLoginPage(clientId,scope,state,redirectUri, new HashMap<String,Object>());
+        Response retorno = retornaLoginPage(clientId,scope,state,redirectUri,nonce, new HashMap<String,Object>());
 
         return retorno;
     }
 
-    public Response retornaLoginPage(String clientId,String scope,String state,String redirectUri,Map<String,Object> variable){
+    public Response retornaLoginPage(String clientId,String scope,String state,String redirectUri,String nonce,Map<String,Object> variable){
         CacheControl cc = new CacheControl();
         cc.setNoCache(true);
         cc.setNoStore(true);
         variable.put(CLIENT_ID, clientId);
         variable.put(SCOPE, scope);
         variable.put(STATE, state);
+        variable.put(NONCE, nonce);
         variable.put(REDIRECT_URI, redirectUri);
 
 
@@ -180,16 +181,15 @@ public class OidcCoreEndPointBean {
         if (user == null || !user.authenticate(password)) {
             Map<String,Object> variables = new HashMap<>();
             variables.put("msgError", "Usuário ou senha inválidos.");
-            return retornaLoginPage(clientId,scope,state,redirectUri,variables);
+            return retornaLoginPage(clientId,scope,state,redirectUri,nonce,variables);
         }
 
         if (user.isInativo()) {
             Map<String,Object> variables = new HashMap<>();
             variables.put("msgError", "Usuário Inativo.");
-            return retornaLoginPage(clientId,scope,state,redirectUri,variables);
         }
 
-        AuthLogin authLogin = new AuthLogin(UUID.fromString(state), randomUUID(), user, client);
+        AuthLogin authLogin = new AuthLogin(UUID.fromString(state), randomUUID(), user, client,nonce);
 
         try {
 			this.authLoginDAO.persistT(authLogin);

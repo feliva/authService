@@ -1,7 +1,7 @@
 package br.com.feliva.auth.oidc;
 
 import static br.com.feliva.authClass.models.OpenIdConstant.*;
-import static br.com.feliva.sharedClass.constantes.InitConstantes.OIDC_ISSUR;
+import static br.com.feliva.sharedClass.constantes.InitConstantes2.OIDC_ISSUR;
 import static java.util.UUID.randomUUID;
 
 import java.net.URISyntaxException;
@@ -52,8 +52,8 @@ public class OidcTokenUtil {
                         .claim(PREFERRED_USERNAME, authLogin.getAuthUser().getUsername())
                         .claim(GROUPS, authLogin.getAuthUser().getArrayPermissoes());
 
-        if (nonce != null) {
-            jstClaimsBuilder.claim(NONCE, nonce);
+        if (authLogin.getNonce() != null) {
+            jstClaimsBuilder.claim(NONCE, authLogin.getNonce());
         }
 
         jstClaimsBuilder.claim(USER_PRINCIPAL_NAME, authLogin.getAuthUser().getUsername()); //principal for microprofile jwt
@@ -142,11 +142,16 @@ public class OidcTokenUtil {
     }
 
     public Response.ResponseBuilder createResponse(AuthLogin authLogin, String redirectUri) throws URISyntaxException {
-       return switch (authLogin.getCliente().getResponseType()){
-            case CODE -> this.createCodeResponse(authLogin,redirectUri);
-            case TOKEN -> this.createTokenResponse(authLogin,redirectUri);
-            default -> null;
-        };
+        try {
+            return switch (authLogin.getCliente().getResponseType()) {
+                case CODE -> this.createCodeResponse(authLogin, redirectUri);
+                case TOKEN -> this.createTokenResponse(authLogin, redirectUri);
+                default -> null;
+            };
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public Response.ResponseBuilder createCodeResponse(AuthLogin authLogin, String redirectUri) throws URISyntaxException {

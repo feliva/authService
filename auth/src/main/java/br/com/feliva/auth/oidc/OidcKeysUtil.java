@@ -24,10 +24,10 @@ import static br.com.feliva.authClass.models.OpenIdConstant.TOKEN_ENDPOINT_AUTH_
 import static br.com.feliva.authClass.models.OpenIdConstant.TOKEN_ENDPOINT_AUTH_METHODS_SUPPORTED_LIST;
 import static br.com.feliva.authClass.models.OpenIdConstant.TOKEN_END_POINT_LINK;
 import static br.com.feliva.authClass.models.OpenIdConstant.USERINFO_ENDPOINT;
-import static br.com.feliva.sharedClass.constantes.InitConstantes.OIDC_ISSUR;
-import static br.com.feliva.sharedClass.constantes.InitConstantes.OIDC_JWK_PATH;
-import static br.com.feliva.sharedClass.constantes.InitConstantes.OIDC_JWT_FILENAME;
-import static br.com.feliva.sharedClass.constantes.InitConstantes.OIDC_JWT_SIZE;
+import static br.com.feliva.sharedClass.constantes.InitConstantes2.OIDC_ISSUR;
+import static br.com.feliva.sharedClass.constantes.InitConstantes2.OIDC_JWK_PATH;
+import static br.com.feliva.sharedClass.constantes.InitConstantes2.OIDC_JWT_FILENAME;
+import static br.com.feliva.sharedClass.constantes.InitConstantes2.OIDC_JWT_SIZE;
 
 import java.io.FileInputStream;
 import java.io.IOException;

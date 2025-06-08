@@ -1,0 +1,1 @@
+ALTER TABLE auth.auth_login ADD nonce varchar(100) NULL;

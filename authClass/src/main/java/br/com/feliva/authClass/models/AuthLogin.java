@@ -6,14 +6,7 @@ import java.util.Base64;
 import java.util.UUID;
 
 import br.com.feliva.sharedClass.db.Model;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "auth_login", schema = "auth")
@@ -41,9 +34,11 @@ public class AuthLogin extends Model {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    private String nonce;
+
     public AuthLogin(){}
 
-    public AuthLogin(UUID state, UUID code, AuthUser authUser,Cliente cliente) {
+    public AuthLogin(UUID state, UUID code, AuthUser authUser,Cliente cliente,String nonse) {
         this.state = state;
         this.code = code;
         this.authUser = authUser;
@@ -51,6 +46,7 @@ public class AuthLogin extends Model {
         //o client tem 30 segundos para solicitar o access token apartir deste code
         this.validoAte = LocalDateTime.now().plusSeconds(30);
         this.usado = false;
+        this.nonce = nonse;
     }
 
     public boolean aindaValido(){
@@ -138,5 +134,9 @@ public class AuthLogin extends Model {
 
     public void setUsado(boolean usado) {
         this.usado = usado;
+    }
+
+    public String getNonce(){
+        return this.nonce;
     }
 }
