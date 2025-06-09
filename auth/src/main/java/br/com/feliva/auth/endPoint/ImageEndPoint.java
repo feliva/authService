@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
-import br.com.feliva.sharedClass.constantes.InitConstantes2;
+import br.com.feliva.sharedClass.constantes.InitConstantes;
 import jakarta.annotation.Resource;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.mail.Session;
@@ -32,7 +32,7 @@ public class ImageEndPoint implements Serializable{
 	@Produces({"image/png"})
     public Response  getImgb(@PathParam("img") String img) throws IOException {
 
-		java.nio.file.Path path = Paths.get(InitConstantes2.IMAGEM_PATH + File.separator + img + InitConstantes2.IMAGEM_EXTENSAO);
+		java.nio.file.Path path = Paths.get(InitConstantes.IMAGEM_PATH + File.separator + img + InitConstantes.IMAGEM_EXTENSAO);
 
 		if(!Files.exists(path)) {
 			return Response.status(Response.Status.NOT_FOUND).build();

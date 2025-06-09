@@ -1,7 +1,7 @@
 package br.com.feliva.auth.oidc;
 
 import static br.com.feliva.authClass.models.OpenIdConstant.*;
-import static br.com.feliva.sharedClass.constantes.InitConstantes2.OIDC_ISSUR;
+import static br.com.feliva.sharedClass.constantes.InitConstantes.OIDC_ISSUR;
 import static java.util.UUID.randomUUID;
 
 import java.net.URISyntaxException;
